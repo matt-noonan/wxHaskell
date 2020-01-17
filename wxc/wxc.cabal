@@ -305,7 +305,7 @@ library
     cc-options: "-std=gnu++14" -Wno-deprecated-declarations
 
   if os(darwin)
-      cc-options: "-stdlib=libstdc++"
+      cc-options: "-stdlib=libc++"
 
   x-dll-name: wxc
 

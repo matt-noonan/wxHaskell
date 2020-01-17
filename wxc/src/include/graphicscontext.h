@@ -70,6 +70,8 @@ void  wxGraphicsContext_StrokeLine( TSelf(wxGraphicsContext) self, TPointDouble(
 void  wxGraphicsContext_StrokeLines( TSelf(wxGraphicsContext) self, size_t n, void* x, void* y, int style );
 void  wxGraphicsContext_PushState( TSelf(wxGraphicsContext) self );
 void  wxGraphicsContext_PopState( TSelf(wxGraphicsContext) self );
+void  wxGraphicsContext_BeginLayer( TSelf(wxGraphicsContext) self, double opacity );
+void  wxGraphicsContext_EndLayer( TSelf(wxGraphicsContext) self );
 
 /*-----------------------------------------------------------------------------
   GraphicsFont

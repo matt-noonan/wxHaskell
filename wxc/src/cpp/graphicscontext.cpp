@@ -152,6 +152,20 @@ EWXWEXPORT(void,wxGraphicsContext_Delete)(wxGraphicsContext* self)
 #endif
 }
 
+EWXWEXPORT(void,wxGraphicsContext_BeginLayer)(wxGraphicsContext* self, double opacity)  
+{
+#ifdef wxUSE_GRAPHICS_CONTEXT
+   self->BeginLayer(opacity);
+#endif
+}
+
+EWXWEXPORT(void,wxGraphicsContext_EndLayer)(wxGraphicsContext* self)  
+{
+#ifdef wxUSE_GRAPHICS_CONTEXT
+  self->EndLayer();
+#endif
+}
+
 /*
 EWXWEXPORT(wxGraphicsPen*,wxGraphicsContext_CreatePen)( wxGraphicsContext* self, const wxPen& pen )
 {
