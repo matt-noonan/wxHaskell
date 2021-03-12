@@ -149,12 +149,12 @@ library
 
 --  exposed-modules:
 --    Dummy
-    
+
   build-depends: base
 
   include-dirs:
     src/include
-  
+
   install-includes:
     dragimage.h
     eljgrid.h
@@ -300,7 +300,7 @@ library
 
   if impl(ghc > 7.10.2 && < 8)
     cc-options: "-std=gnu++11" -Wno-deprecated-declarations
-    
+
   if impl(ghc >= 8)
     cc-options: "-std=gnu++14" -Wno-deprecated-declarations
 
@@ -313,9 +313,9 @@ library
 
 
 custom-setup
-  setup-depends: 
-    base, 
-    Cabal >= 2.2 && < 2.5,
+  setup-depends:
+    base,
+    Cabal >= 3.2 && < 3.3,
     bytestring,
     split,
     process,

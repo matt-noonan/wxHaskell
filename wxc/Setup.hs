@@ -22,8 +22,7 @@ import Distribution.Simple.Setup ( BuildFlags, ConfigFlags
                                  , InstallFlags, installVerbosity
                                  , fromFlag, fromFlagOrDefault, copyDest
                                  )
-import Distribution.Simple.Utils ( die
-                                 , installOrdinaryFile
+import Distribution.Simple.Utils ( installOrdinaryFile
                                  , IOData(..)
                                  , IODataMode(..)
                                  , rawSystemExitWithEnv
@@ -87,8 +86,7 @@ rawShellSystemStdInOut :: Verbosity                     -- Verbosity level
                        -> [String]                      -- Command arguments
                        -> IO (String, String, ExitCode) -- (Command result, Errors, Command exit status)
 rawShellSystemStdInOut v f as =
-    rawSystemStdInOut v "sh" (f:as) Nothing Nothing Nothing IODataModeText >>=
-    \(IODataText result, errors, exitStatus) -> return (result, errors, exitStatus)
+    rawSystemStdInOut v "sh" (f:as) Nothing Nothing Nothing IODataModeText
 
 isWindowsMsys :: IO Bool
 isWindowsMsys = (buildOS == Windows&&) . isJust <$> lookupEnv "MSYSTEM"
@@ -444,7 +442,7 @@ deMsysPaths bi = do
     if b
     then do
         let cor ph = do
-            (IODataText r, e, c ) <- rawSystemStdInOut normal "sh" ["-c", "cd " ++ ph ++ "; pwd -W"] Nothing Nothing Nothing IODataModeText
+            (r, e, c ) <- rawSystemStdInOut normal "sh" ["-c", "cd " ++ ph ++ "; pwd -W"] Nothing Nothing Nothing IODataModeText
             unless (c == ExitSuccess) (putStrLn ("Error: failed to convert MSYS path to native path \n" ++ e) >> exitFailure)
             return . head . lines $ r
         elds  <- mapM cor (extraLibDirs bi)
@@ -470,7 +468,7 @@ myBuildHook pkg_descr local_bld_info user_hooks bld_flags =
         dll_name  = fromJust (lookup "x-dll-name" custom_bi)
         dll_srcs  = (lines . fromJust) (lookup "x-dll-sources" custom_bi)
         dll_libs  = (lines . fromJust) (lookup "x-dll-extra-libraries" custom_bi)
-        cc_opts   = ccOptions lib_bi 
+        cc_opts   = ccOptions lib_bi
         ld_opts   = ldOptions lib_bi
         inc_dirs  = includeDirs lib_bi
         lib_dirs  = extraLibDirs lib_bi

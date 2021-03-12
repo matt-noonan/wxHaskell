@@ -1,0 +1,9 @@
+resolver: lts-17.5
+
+packages:
+- wx
+- wxc
+- wxcore
+- wxdirect
+
+extra-package-dbs: []
