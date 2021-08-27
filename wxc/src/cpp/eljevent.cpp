@@ -847,7 +847,7 @@ EWXWEXPORT(bool,wxNavigationKeyEvent_ShouldPropagate)(wxNavigationKeyEvent* self
 {
         return self->ShouldPropagate();
 }
-	
+
 EWXWEXPORT(void*,wxNavigationKeyEvent_GetCurrentFocus)(wxNavigationKeyEvent* self)
 {
         return (void*) self->GetCurrentFocus();
@@ -1068,7 +1068,7 @@ EWXWEXPORT(wxPGProperty*,wxPropertyGridEvent_GetProperty)(wxPropertyGridEvent* s
 {
 #if defined(wxUSE_PROPGRID)
         wxPGProperty* const prop = self->GetProperty();
-        return prop == 0 ? new wxPGProperty() : prop;
+        return prop; // prop == 0 ? new wxPGProperty() : prop;
 #else
         return NULL;
 #endif

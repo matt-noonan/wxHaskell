@@ -2925,13 +2925,13 @@ void       wxGrid_DisableCellEditControl( TSelf(wxGrid) _obj );
 void       wxGrid_DisableDragColSize( TSelf(wxGrid) _obj );
 void       wxGrid_DisableDragGridSize( TSelf(wxGrid) _obj );
 void       wxGrid_DisableDragRowSize( TSelf(wxGrid) _obj );
-void       wxGrid_DrawAllGridLines( TSelf(wxGrid) _obj, TClass(wxDC) dc, TClass(wxRegion) reg );
+void       wxGrid_DrawAllGridWindowLines( TSelf(wxGrid) _obj, TClass(wxDC) dc, TClass(wxRegion) reg, TClass(wxGridWindow) win );
 void       wxGrid_DrawCell( TSelf(wxGrid) _obj, TClass(wxDC) dc, int _row, int _col );
 void       wxGrid_DrawCellBorder( TSelf(wxGrid) _obj, TClass(wxDC) dc, int _row, int _col );
 void       wxGrid_DrawCellHighlight( TSelf(wxGrid) _obj, TClass(wxDC) dc, TClass(wxGridCellAttr) attr );
 void       wxGrid_DrawColLabel( TSelf(wxGrid) _obj, TClass(wxDC) dc, int col );
 void       wxGrid_DrawColLabels( TSelf(wxGrid) _obj, TClass(wxDC) dc );
-void       wxGrid_DrawGridSpace( TSelf(wxGrid) _obj, TClass(wxDC) dc );
+void       wxGrid_DrawGridSpace( TSelf(wxGrid) _obj, TClass(wxDC) dc, TClass(wxGridWindow) win );
 void       wxGrid_DrawRowLabel( TSelf(wxGrid) _obj, TClass(wxDC) dc, int row );
 void       wxGrid_DrawRowLabels( TSelf(wxGrid) _obj, TClass(wxDC) dc );
 void       wxGrid_DrawTextRectangle( TSelf(wxGrid) _obj, TClass(wxDC) dc, TClass(wxString) txt, TRect(x,y,w,h), int horizontalAlignment, int verticalAlignment );
@@ -3235,6 +3235,10 @@ void       wxGridSizer_SetVGap( TSelf(wxGridSizer) _obj, int gap );
 
 /* wxGridTableBase */
 TClassDefExtend(wxGridTableBase,wxObject)
+
+/* wxGridWindow */
+TClassDef(wxGridWindow)
+TClassDefExtend(wxGridWindow,wxWindow)
 
 /* wxHTTP */
 TClassDefExtend(wxHTTP,wxProtocol)
@@ -5824,4 +5828,3 @@ TClassDefExtend(wxPropertyCategory,wxPGProperty)
 TClass(wxPropertyCategory) wxPropertyCategory_Create( TClass(wxString) label);
 
 #endif /* WXC_GLUE_H */
-
