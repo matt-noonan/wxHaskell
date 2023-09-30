@@ -409,8 +409,10 @@ findWxVersion =
           wx_config ["--version"]                          -- Sample output: 3.0.1
 
         readVersion :: String -> IO String
-        readVersion x =
-          wx_config ["--version=" ++ x, "--version-full"]  -- Sample output: 3.0.1.0
+        readVersion x = do
+          v <- wx_config ["--version=" ++ x, "--version-full"]  -- Sample output: 3.0.1.0
+          putStrLn ("trying wx version " ++ show x)
+          pure v
 
         isCompatible :: String -> Bool
         isCompatible xs =
