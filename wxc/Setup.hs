@@ -1,5 +1,5 @@
 
-{-# LANGUAGE CPP #-}
+{-# LANGUAGE CPP, ScopedTypeVariables #-}
 
 import qualified Control.Exception as E
 import Control.Monad (filterM, join, liftM2, mapM_, unless, when)
@@ -327,7 +327,7 @@ bitnessMismatch =
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 -- A list of wxWidgets versions that can be handled by this version of wxHaskell
-wxCompatibleVersions = ["3.2", "3.1", "3.0", "2.9"] -- Preferred version first
+wxCompatibleVersions = ["3.1", "3.0", "2.9"] -- Preferred version first
 
 checkWxVersion :: IO String
 checkWxVersion =
@@ -376,8 +376,10 @@ readWxConfig wxVersion =
 
 wx_config :: [String] -> IO String
 wx_config parms = do
-  let runExecutable failureAction =
-        readProcess "wx-config" parms "" `E.onException` failureAction
+  let runExecutable :: IO String -> IO String
+      runExecutable failureAction =
+        readProcess "wx-config" parms "" `E.catch`
+           \(_ :: E.SomeException) -> failureAction
 
   b <- isWindowsMsys
   if b
