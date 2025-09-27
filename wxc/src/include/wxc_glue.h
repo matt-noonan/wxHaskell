@@ -2925,7 +2925,7 @@ void       wxGrid_DisableCellEditControl( TSelf(wxGrid) _obj );
 void       wxGrid_DisableDragColSize( TSelf(wxGrid) _obj );
 void       wxGrid_DisableDragGridSize( TSelf(wxGrid) _obj );
 void       wxGrid_DisableDragRowSize( TSelf(wxGrid) _obj );
-void       wxGrid_DrawAllGridWindowLines( TSelf(wxGrid) _obj, TClass(wxDC) dc, TClass(wxRegion) reg, TClass(wxGridWindow) win );
+void       wxGrid_DrawAllGridLines( TSelf(wxGrid) _obj, TClass(wxDC) dc, TClass(wxRegion) reg );
 void       wxGrid_DrawCell( TSelf(wxGrid) _obj, TClass(wxDC) dc, int _row, int _col );
 void       wxGrid_DrawCellBorder( TSelf(wxGrid) _obj, TClass(wxDC) dc, int _row, int _col );
 void       wxGrid_DrawCellHighlight( TSelf(wxGrid) _obj, TClass(wxDC) dc, TClass(wxGridCellAttr) attr );
