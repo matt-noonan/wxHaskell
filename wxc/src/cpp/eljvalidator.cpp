@@ -33,10 +33,17 @@ EWXWEXPORT(void*,wxValidator_GetWindow)(void* self)
 	return (void*)((wxValidator*)self)->GetWindow();
 }
 
+#if wxCHECK_VERSION(3, 1, 1)
 EWXWEXPORT(void,wxValidator_SetWindow)(void* self,wxWindow* win)
 {
 	((wxValidator*)self)->SetWindow(win);
 }
+#else
+EWXWEXPORT(void,wxValidator_SetWindow)(void* self,wxWindowBase* win)
+{
+	((wxValidator*)self)->SetWindow(win);
+}
+#endif
 
 #if (wxVERSION_NUMBER < 2800)
 EWXWEXPORT(bool,wxValidator_IsSilent)()

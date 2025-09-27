@@ -1067,8 +1067,12 @@ EWXWEXPORT(bool,wxPropertyGridEvent_HasProperty)(wxPropertyGridEvent* self)
 EWXWEXPORT(wxPGProperty*,wxPropertyGridEvent_GetProperty)(wxPropertyGridEvent* self)
 {
 #if defined(wxUSE_PROPGRID)
+#if wxCHECK_VERSION(3, 1, 3)
+        return self->GetProperty();
+#else
         wxPGProperty* const prop = self->GetProperty();
-        return prop; // prop == 0 ? new wxPGProperty() : prop;
+        return prop == 0 ? new wxPGProperty() : prop;
+#endif
 #else
         return NULL;
 #endif
